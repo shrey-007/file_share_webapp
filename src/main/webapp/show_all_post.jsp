@@ -1,10 +1,11 @@
-<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.UserDao" %>
+<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.UserDao,com.tech.blog.dao.LikeDao" %>
 <%
 User user=(User)session.getAttribute("currentuser");
 if(user==null){
 response.sendRedirect("login.jsp");}
 String imagename="images/"+user.getProfile();
 int uid=user.getId();
+LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 %>
 <html>
 
@@ -44,7 +45,7 @@ int uid=user.getId();
 
 
         <%
-        out.println("<table><tr><th>Title</th><th>Name</th><th>Description</th><th>File</th></tr>");
+        out.println("<table><tr><th>Title</th><th>Name</th><th>Description</th><th>File</th><th>Likes</th></tr>");
          PostDao postdao=new PostDao(ConnectionProvider.getConnection());
          List<Post> list=postdao.getAllPosts();
          for(Post p:list){
@@ -58,6 +59,14 @@ int uid=user.getId();
                         <td><%=username%></td>
                         <td><%=p.getDescription()%></td>
                         <td><a href="<%=filename%>">Show file</a></td>
+                        <td><%= likeDao.countLikeOnPost(p.getPid()) %>
+                                                          <form action="like" method="post">
+                                                          <input type="hidden" name="uid" value="<%=user.getId()%>">
+                                                          <input type="hidden" name="pid" value="<%=p.getPid()%>">
+                                                          <input type="hidden" name="kahaSeAaya" value="show_all_post.jsp">
+                                                          <input type="submit" value="Submit">
+                                                          </form>
+                        </td>
           </tr>
 
        <%

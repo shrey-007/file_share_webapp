@@ -1,5 +1,5 @@
 <%@page errorPage="error.jsp"%>
-<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider" %>
+<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.LikeDao" %>
 
 
 <%
@@ -8,6 +8,7 @@ if(user==null){
 response.sendRedirect("login.jsp");}
 String imagename="images/"+user.getProfile();
 int uid=user.getId();
+LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 %>
 
 <html>
@@ -127,7 +128,7 @@ int uid=user.getId();
 
 
        <%
-           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th></tr>");
+           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th><th>Likes</th></tr>");
 
            PostDao postdao = new PostDao(ConnectionProvider.getConnection());
            List<Post> list = postdao.getAllPostsByUser(uid);
@@ -136,9 +137,18 @@ int uid=user.getId();
                String filename = "files/" + p.getFilename();
        %>
                <tr>
-                   <td><%= p.getTitle() %></td>
+                               <td><%= p.getTitle() %><%= p.getPid() %></td>
                                <td><%= p.getDescription() %></td>
                                <td><a href="<%= filename %>">Show file</a></td>
+                               <td><%= likeDao.countLikeOnPost(p.getPid()) %>
+                                  <form action="like" method="post">
+                                  <input type="hidden" name="uid" value="<%=user.getId()%>">
+                                  <input type="hidden" name="pid" value="<%=p.getPid()%>">
+                                  <input type="hidden" name="filename" value="<%= p.getTitle() %>">
+                                  <input type="hidden" name="kahaSeAaya" value="profile.jsp">
+                                  <input type="submit" value="Submit">
+                                  </form>
+                               </td>
 
 
                </tr>

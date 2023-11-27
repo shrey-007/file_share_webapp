@@ -55,9 +55,10 @@ public class PostDao {
                String filename=rs.getString("filename");
                String description=rs.getString("description");
                //ek (row)post ki details nikali, ab use post ke object mai rakh do
-               Post post=new Post(sid,uid,title,filename,description);
+               Post post=new Post(pid,sid,uid,title,filename,description);
                //ab us object ko list mai daal do
                list.add(post);
+
             }
         }
         catch(Exception e){
@@ -84,7 +85,7 @@ public class PostDao {
                 String filename=rs.getString("filename");
                 String description=rs.getString("description");
                 //ek (row)post ki details nikali, ab use post ke object mai rakh do
-                Post post=new Post(sid,uid,title,filename,description);
+                Post post=new Post(pid,sid,uid,title,filename,description);
                 //ab us object ko list mai daal do
                 list.add(post);
             }
@@ -114,7 +115,7 @@ public class PostDao {
                 String filename=rs.getString("filename");
                 String description=rs.getString("description");
                 //ek (row)post ki details nikali, ab use post ke object mai rakh do
-                Post post=new Post(sid,uid,title,filename,description);
+                Post post=new Post(pid,sid,uid,title,filename,description);
                 //ab us object ko list mai daal do
                 list.add(post);
             }

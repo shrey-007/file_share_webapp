@@ -111,6 +111,26 @@
 
 
 
+  <servlet>
+    <servlet-name>
+      Like
+    </servlet-name>
+    <servlet-class>
+      com.tech.blog.servlets.LikeServlet
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>
+      Like
+    </servlet-name>
+    <url-pattern>
+      /like
+    </url-pattern>
+  </servlet-mapping>
+
+
+
 
 
 

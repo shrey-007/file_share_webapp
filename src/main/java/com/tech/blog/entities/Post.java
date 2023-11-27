@@ -63,5 +63,13 @@ public class Post {
         this.filename = filename;
         this.description=description;
     }
+    public Post(int pid,int sid, int uid, String title, String filename,String description){
+        this.sid = sid;
+        this.uid = uid;
+        this.title = title;
+        this.filename = filename;
+        this.description=description;
+        this.pid=pid;
+    }
 
 }
