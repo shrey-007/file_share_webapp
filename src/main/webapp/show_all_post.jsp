@@ -10,6 +10,22 @@ int uid=user.getId();
 
     <head>
         <style>
+        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 20px;
+                        }
+
+                        th, td {
+                            padding: 10px;
+                            text-align: left;
+                            border: 1px solid #ddd;
+                        }
+
+                        th {
+                            background-color: #333;
+                            color: #fff;
+                        }
                .posts{
                         display: flex;
                         justify-content: space-between;
@@ -26,7 +42,9 @@ int uid=user.getId();
     <body>
         <%@include file="profile_navbar.jsp"%>
 
+
         <%
+        out.println("<table><tr><th>Title</th><th>Name</th><th>Description</th><th>File</th></tr>");
          PostDao postdao=new PostDao(ConnectionProvider.getConnection());
          List<Post> list=postdao.getAllPosts();
          for(Post p:list){
@@ -35,17 +53,20 @@ int uid=user.getId();
          UserDao u=new UserDao(ConnectionProvider.getConnection());
          String username=u.getUserNameById(id);
        %>
-           <div class="posts">
-                      <div class="post">
-                        <h2><%=p.getTitle()%></h2>
-                        <h4><%=username%></h4>
-                        <p><%=p.getDescription()%></p>
-                        <a href="<%=filename%>">Show file</a>
-                      </div>
-           </div>
+           <tr>
+                        <td><%=p.getTitle()%></td>
+                        <td><%=username%></td>
+                        <td><%=p.getDescription()%></td>
+                        <td><a href="<%=filename%>">Show file</a></td>
+          </tr>
+
        <%
                         }
+                        out.println("</table>");
        %>
+
 
     </body>
 </html>
+
+

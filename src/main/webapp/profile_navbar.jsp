@@ -65,7 +65,7 @@
 
 <div class="navbar">
     <a class="active" href="index.jsp">Home</a>
-    <a href="about.jsp">About</a>
+    <a href="about.jsp"></a>
     <div class="user-info">
         <p class="username"><%=user.getName()%></p>
         <a class="logout" href="logout">Logout</a>

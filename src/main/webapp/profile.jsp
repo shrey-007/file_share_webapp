@@ -13,6 +13,22 @@ int uid=user.getId();
 <html>
  <head>
         <style>
+         table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+
+                th, td {
+                    padding: 10px;
+                    text-align: left;
+                    border: 1px solid #ddd;
+                }
+
+                th {
+                    background-color: #333;
+                    color: #fff;
+                }
             .parent{
                 display: flex;
                 height: 200;
@@ -90,7 +106,7 @@ int uid=user.getId();
        <div class="button-container">
                    <form action="update.jsp" method="post">
                        <button >Change Profile Photo</button>
-                       <button>Edit About</button>
+
                    </form>
        </div>
        <div class="button-container">
@@ -108,29 +124,29 @@ int uid=user.getId();
 
        <h1>Your Posts</h1>
        <hr>
+
+
        <%
-         PostDao postdao=new PostDao(ConnectionProvider.getConnection());
-         List<Post> list=postdao.getAllPostsByUser(uid);
-         for(Post p:list){
-         String filename="files/"+p.getFilename();
+           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th></tr>");
+
+           PostDao postdao = new PostDao(ConnectionProvider.getConnection());
+           List<Post> list = postdao.getAllPostsByUser(uid);
+
+           for (Post p : list) {
+               String filename = "files/" + p.getFilename();
        %>
-           <div class="posts">
-                      <div class="post">
-                        <h2><%=p.getTitle()%></h2>
-                        <p><%=p.getDescription()%></p>
-                        <a href="<%=filename%>">Show file</a>
-                      </div>
-           </div>
+               <tr>
+                   <td><%= p.getTitle() %></td>
+                               <td><%= p.getDescription() %></td>
+                               <td><a href="<%= filename %>">Show file</a></td>
+
+
+               </tr>
        <%
-                        }
+           }
+
+           out.println("</table>");
        %>
-
-
-
-
-
-
-
 
 
 
