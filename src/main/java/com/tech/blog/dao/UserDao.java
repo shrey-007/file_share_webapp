@@ -73,6 +73,9 @@ public class UserDao {
                 user.setGender(set.getString("gender"));
                 user.setDateTime(set.getTimestamp("registration_date"));
                 user.setProfile(set.getString("profile"));
+                user.setOrganisation(set.getString("oid"));
+                //get organisation name
+                System.out.println(user.getOrganisation());
             }
         }
         catch (Exception e){

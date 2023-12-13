@@ -1,72 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@page errorPage="error.jsp"%>
+<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.LikeDao" %>
+
+
+<%
+User user=(User)session.getAttribute("currentuser");
+if(user==null){
+response.sendRedirect("login.jsp");}
+String imagename="images/"+user.getProfile();
+int uid=user.getId();
+LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
+%>
+
+
+
+<html>
+
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Page</title>
+
     <style>
 
         body {
-            font-family: Arial, sans-serif;
+                    font-family: Arial, sans-serif;
 
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+                    justify-content: center;
+                    align-items: center;
 
-        }
+                    margin: 0;
 
-        .signup-container {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            margin:auto
-        }
+                }
 
-        .signup-container h2 {
-            text-align: center;
-        }
+                .signup-container {
+                    background-color: rgb(3, 3, 24);;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    max-width: 400px;
+                    width: 100%;
+                    margin:auto;
+                    color:white;
+                }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+                .signup-container h2 {
+                    text-align: center;
+                }
 
-        .form-group label {
-            font-weight: bold;
-        }
+                .form-group {
+                    margin-bottom: 20px;
+                }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+                .form-group label {
 
-        .form-group button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 10px 20px;
-        }
+                }
 
-        .form-group button:hover {
-            background-color: #45a049;
-        }
+                .form-group input,
+                .form-group textarea {
+                    width: 100%;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+
+                .form-group button {
+                   background-color: #e39c0ede;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    padding: 10px 20px;
+                }
+
+                .form-group button:hover {
+                  background-color: #f9c01fde;
+                }
     </style>
 </head>
 
 <body>
 
-<%@include file="navbar.jsp"%>
+<%@include file="profile_navbar.jsp"%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 
@@ -100,6 +121,17 @@
             </div>
         </form>
     </div>
+
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <%@include file="footer.jsp"%>
 
 </body>
 
