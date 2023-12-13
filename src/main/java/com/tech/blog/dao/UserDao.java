@@ -19,16 +19,31 @@ public class UserDao {
     public boolean saveUser(User user){
         boolean flag=false;
         try{
+            if(user.getOrganisation().equals("None")){
+                String query="insert into user(name,email,password,gender,about) values (?,?,?,?,?)";
+                PreparedStatement ps=con.prepareStatement(query);
+                ps.setString(1,user.getName());
+                ps.setString(2,user.getEmail());
+                ps.setString(3,user.getPassword());
+                ps.setString(4,user.getGender());
+                ps.setString(5,user.getAbout());
+                ps.executeUpdate();
+                flag=true;
+            }
+            else{
+                String query="insert into user(name,email,password,gender,about,oid) values (?,?,?,?,?,?)";
+                PreparedStatement ps=con.prepareStatement(query);
+                ps.setString(1,user.getName());
+                ps.setString(2,user.getEmail());
+                ps.setString(3,user.getPassword());
+                ps.setString(4,user.getGender());
+                ps.setString(5,user.getAbout());
+                ps.setString(6,user.getOrganisation());
+                ps.executeUpdate();
+                flag=true;
+            }
 
-            String query="insert into user(name,email,password,gender,about) values (?,?,?,?,?)";
-            PreparedStatement ps=con.prepareStatement(query);
-            ps.setString(1,user.getName());
-            ps.setString(2,user.getEmail());
-            ps.setString(3,user.getPassword());
-            ps.setString(4,user.getGender());
-            ps.setString(5,user.getAbout());
-            ps.executeUpdate();
-            flag=true;
+
 
         }
         catch(Exception e){e.printStackTrace();}

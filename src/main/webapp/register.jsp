@@ -104,6 +104,11 @@
                 <label for="about">About Youself</label>
                 <textarea id="about" name="about" rows="4"></textarea>
             </div>
+            <div class="form-group">
+                 <label for="organisation">Organisation</label>
+                 <input type="text" id="organisation" name="organisation" value="None">
+            </div>
+
             <div >
                 <label for="subscribe"> Accept  conditions</label>
                 <input type="checkbox" name="subscribe">

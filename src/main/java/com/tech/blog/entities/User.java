@@ -11,6 +11,7 @@ public class User {
     private String about;
     private Timestamp dateTime;
     private String profile;
+    private String organisation;
 
     public User() {
 
@@ -32,6 +33,25 @@ public class User {
         this.password = password;
         this.gender = gender;
         this.about = about;
+    }
+
+    public User(String name, String email, String password, String gender, String about, String organisation) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
+        this.about = about;
+        this.dateTime = dateTime;
+        this.profile = profile;
+        this.organisation = organisation;
+    }
+
+    public String getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(String organisation) {
+        this.organisation = organisation;
     }
 
     public String getProfile() {

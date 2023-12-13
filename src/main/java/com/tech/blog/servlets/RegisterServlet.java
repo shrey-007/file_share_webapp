@@ -27,10 +27,13 @@ public class RegisterServlet extends HttpServlet {
             String password=req.getParameter("password");
             String gender=req.getParameter("gender");
             String about=req.getParameter("about");
+            String organisation=req.getParameter("organisation");
+            System.out.println(organisation);
+
 
             //create user object and set data to its attribute
-            User user=new User(name,email,password,gender,about);
-
+            User user=new User(name,email,password,gender,about,organisation);
+            System.out.println(user);
             //create userdao object to save these details
             UserDao dao=new UserDao(ConnectionProvider.getConnection());
             if(dao.saveUser(user)){
