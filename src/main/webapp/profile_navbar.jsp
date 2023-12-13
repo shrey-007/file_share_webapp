@@ -1,75 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <%@page import="com.tech.blog.entities.User" %>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Navbar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            /* there are two things items and containers */
+            body{
+                /* else navbar mai and window mai gap aaega */
+                margin:0;
+            }
+            .navBar{
+                display: flex;
+                background-color: rgb(6, 6, 78);
+                /* navbar ki height */
+                height: 50;
+                /* vertically beeech mai aa jaaege items kiuki dekho height of navbar is 50 and navbar elements ki height 30 hai toh beech mai laana hoga*/
+                align-items: center;
+            }
+            .navBarElements{
+                color: white;
+                /* isse sirf horizontally center hoga vertically nhi */
+                text-align: center;
+                /* height and widh of items */
+                height: 30;
+                width: 100;
+                /* to vertically center text inside  navBarElements */
+                 padding-top: 5;
+                /* to separate items */
+                margin-left: 5;
+                margin-right: 5;
+            }
+            .navBarElements2{
+                /* now navBarElements is itself a flexbox */
+                display: flex;
+                margin-left: 1200;
 
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            display: flex;
+            }
+            .navBarElements:hover{
+                 background-color:blue;
+                 /* border */
+                border: hidden solid blue;
+                border-radius: 10px;
+                /* to customise cursor */
+                cursor:pointer;
+            }
+            .navBarsubElements2{
+                color:white;
+                margin: 5;
+            }
+            #e1{
+                color:rgb(214, 15, 145);
+                margin-right: 20;
+            }
+            a{
+            text-decoration:none;}
 
-            align-items: center;
-            padding: 0 20px;
-        }
 
-        .navbar a {
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover,.navbar .user-info a:hover  {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .navbar a.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .navbar .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .user-info .username {
-            color: #f2f2f2;
-            padding: 14px 16px;
-            margin: 0;
-        }
-
-        .navbar .user-info .logout {
-            color: #f2f2f2;
-            text-decoration: none;
-            padding: 14px 16px;
-            margin: 0;
-        }
-        .user-info{
-            margin-left:1100;
-        }
-    </style>
-</head>
+        </style>
+        </head>
 
 <body>
 
-<div class="navbar">
-    <a class="active" href="index.jsp">Home</a>
-    <a href="about.jsp"></a>
-    <div class="user-info">
-        <p class="username"><%=user.getName()%></p>
-        <a class="logout" href="logout">Logout</a>
-    </div>
+
+
+<div class="navBar">
+       <a href="index.jsp" class="navBarElements">Home</a>
+       <div class="navBarElements2">
+          <a href="notification.jsp" class="navBarsubElements2" id="e1"><i class="fas fa-bell"></i></i></a>
+          <div class="navBarsubElements2" id="e2"><i class="fas fa-user"></i></div>
+          <div class="navBarsubElements2" id="e3"><%=user.getName()%></div>
+       </div>
+       <a href="logout" class="navBarElements">Logout</a>
 </div>
 
 </body>
