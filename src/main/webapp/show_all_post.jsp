@@ -43,7 +43,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
     <body>
         <%@include file="profile_navbar.jsp"%>
 
-
+        <h2>Our Top Posts</h2>
         <%
         out.println("<table><tr><th>Title</th><th>Name</th><th>Description</th><th>File</th><th>Likes</th></tr>");
          PostDao postdao=new PostDao(ConnectionProvider.getConnection());
