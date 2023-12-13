@@ -112,6 +112,16 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                     <option value="DataBase Management System">DataBase Management System</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type" name="type">
+                     <option value="public">Public</option>
+                     <option value="Private">private</option>
+                </select>
+            </div>
+
+
             <div class="form-group">
                            <label for="ufile">Upload File</label>
                            <input type="file" id="ufile" name="ufile" required>

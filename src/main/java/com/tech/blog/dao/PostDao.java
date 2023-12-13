@@ -17,7 +17,7 @@ public class PostDao {
     public boolean savePost(Post post){
         boolean flag=false;
         try{
-            String query="insert into post(uid,sid,title,filename,description) value(?,?,?,?,?)";
+            String query="insert into post(uid,sid,title,filename,description,type) value(?,?,?,?,?,?)";
             PreparedStatement ps=con.prepareStatement(query);
             ps.setInt(1,post.getUid());
             System.out.println(post.getUid());
@@ -28,6 +28,8 @@ public class PostDao {
             ps.setString(4,post.getFilename());
             System.out.println(post.getFilename());
             ps.setString(5,post.getDescription());
+            System.out.println(post.getDescription());
+            ps.setString(6,post.getType());
             System.out.println(post.getDescription());
             ps.executeUpdate();
             flag=true;
@@ -54,11 +56,11 @@ public class PostDao {
                String title=rs.getString("title");
                String filename=rs.getString("filename");
                String description=rs.getString("description");
+               String type=rs.getString("type");
                //ek (row)post ki details nikali, ab use post ke object mai rakh do
-               Post post=new Post(pid,sid,uid,title,filename,description);
+               Post post=new Post(pid,sid,uid,title,filename,description,type);
                //ab us object ko list mai daal do
                list.add(post);
-
             }
         }
         catch(Exception e){
@@ -84,8 +86,9 @@ public class PostDao {
                 String title=rs.getString("title");
                 String filename=rs.getString("filename");
                 String description=rs.getString("description");
+                String type=rs.getString("type");
                 //ek (row)post ki details nikali, ab use post ke object mai rakh do
-                Post post=new Post(pid,sid,uid,title,filename,description);
+                Post post=new Post(pid,sid,uid,title,filename,description,type);
                 //ab us object ko list mai daal do
                 list.add(post);
             }
@@ -114,8 +117,9 @@ public class PostDao {
                 String title=rs.getString("title");
                 String filename=rs.getString("filename");
                 String description=rs.getString("description");
+                String type=rs.getString("type");
                 //ek (row)post ki details nikali, ab use post ke object mai rakh do
-                Post post=new Post(pid,sid,uid,title,filename,description);
+                Post post=new Post(pid,sid,uid,title,filename,description,type);
                 //ab us object ko list mai daal do
                 list.add(post);
             }

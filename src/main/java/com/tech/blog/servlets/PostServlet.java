@@ -26,6 +26,7 @@ public class PostServlet extends HttpServlet {
            String subject=req.getParameter("subject");
            Part part=req.getPart("ufile");
            String filename=part.getSubmittedFileName();
+           String type=req.getParameter("type");
 
            //getting user information
            HttpSession s=req.getSession();
@@ -37,7 +38,7 @@ public class PostServlet extends HttpServlet {
            int sid= sub.getSid();
 
            //creating post object and setting its attributes
-           Post post=new Post(sid,uid,title,filename,description);
+           Post post=new Post(sid,uid,title,filename,description,type);
 
            //saving details using postdao
            PostDao dao=new PostDao(ConnectionProvider.getConnection());

@@ -7,6 +7,15 @@ public class Post {
     private String title;
     private String filename;
     private String description;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getDescription() {
         return description;
@@ -63,6 +72,14 @@ public class Post {
         this.filename = filename;
         this.description=description;
     }
+    public Post( int sid, int uid, String title, String filename,String description,String type){
+        this.sid = sid;
+        this.uid = uid;
+        this.title = title;
+        this.filename = filename;
+        this.description=description;
+        this.type=type;
+    }
     public Post(int pid,int sid, int uid, String title, String filename,String description){
         this.sid = sid;
         this.uid = uid;
@@ -70,6 +87,15 @@ public class Post {
         this.filename = filename;
         this.description=description;
         this.pid=pid;
+    }
+    public Post(int pid,int sid, int uid, String title, String filename,String description,String type){
+        this.sid = sid;
+        this.uid = uid;
+        this.title = title;
+        this.filename = filename;
+        this.description=description;
+        this.pid=pid;
+        this.type=type;
     }
 
 }
