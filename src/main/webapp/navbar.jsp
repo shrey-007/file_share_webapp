@@ -1,53 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample Navbar</title>
+<html>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* there are two things items and containers */
+        body{
+            /* else navbar mai and window mai gap aaega */
             margin:0;
         }
-
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            margin-bottom:77px;
+        .navBar{
+            display: flex;
+            background-color: rgb(3, 3, 10);
+            /* navbar ki height */
+            height: 50;
+            /* vertically beeech mai aa jaaege items kiuki dekho height of navbar is 50 and navbar elements ki height 30 hai toh beech mai laana hoga*/
+            align-items: center;
         }
-
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .navbar a.active {
-            background-color: #4CAF50;
+        .navBarElements{
             color: white;
+            /* isse sirf horizontally center hoga vertically nhi */
+            text-align: center;
+            /* height and widh of items */
+            height: 30;
+            width: 100;
+            /* to vertically center text inside  navBarElements */
+             padding-top: 5;
+            /* to separate items */
+            margin-left: 5;
+            margin-right: 5;
         }
+        .navBarElements:hover{
+             background-color:blue;
+             /* border */
+            border: hidden solid blue;
+            border-radius: 10px;
+            cursor:pointer;
+
+        }
+        a{
+        text-decoration:none;
+        color:white;}
+
+
     </style>
-</head>
+    <body>
 
-<body>
-
-
- <div class="navbar">
-        <a class="active" href="index.jsp">Home</a>
-        <a href="login.jsp">Login</a>
-        <a href="register.jsp">Sign up</a>
+    <div class="navBar">
+        <div class="navBarElements">
+                <a href="index.jsp">Home</a>
+        </div>
+        <div class="navBarElements">
+                <a href="login.jsp">Login</a>
+        </div>
+        <div class="navBarElements">
+                <a href="register.jsp">Sign Up</a>
+        </div>
     </div>
 
-
-</body>
-
+    </body>
 </html>
