@@ -45,7 +45,11 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                                       cursor:pointer;
                                       }
                                       .smiley{
-                                      background-color: rgb(6, 6, 78);}
+                                      background-color: black;
+                                                                           border-style: 5px solid black;
+                                                                           border-radius: 20px;
+                                                                           padding: 0;
+                                                                           }
 
         </style>
     </head>
