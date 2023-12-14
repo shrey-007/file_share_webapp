@@ -101,6 +101,22 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                  }
                  .smiley{
                  background-color: rgb(6, 6, 78);}
+                  .type{
+                                 text-align: center;
+                                 display: block;
+                                 width: 50px;
+                                 padding:1px;
+                             }
+                             #public{
+                                 border: 2px solid #016f01;
+                                 border-radius: 8px;
+                                 color:#016f01
+                             }
+                             #private{
+                                 border: 2px solid #de0000;
+                                 border-radius: 8px;
+                                 color: #de0000;
+                             }
         </style>
 
     </head>
@@ -159,7 +175,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
 
        <%
-           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th><th>Likes</th></tr>");
+           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th><th>Type</th><th>Likes</th></tr>");
 
            PostDao postdao = new PostDao(ConnectionProvider.getConnection());
            List<Post> list = postdao.getAllPostsByUser(uid);
@@ -171,6 +187,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                                <td><%= p.getTitle() %><%= p.getPid() %></td>
                                <td><%= p.getDescription() %></td>
                                <td><a href="<%= filename %>">Show file</a></td>
+                               <td><div class="type" id="<%= p.getType() %>"><%= p.getType() %></div></td>
                                <td><%= likeDao.countLikeOnPost(p.getPid()) %>
                                   <form action="like" method="post">
                                   <input type="hidden" name="uid" value="<%=user.getId()%>">
@@ -179,7 +196,6 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                                   <input type="hidden" name="kahaSeAaya" value="profile.jsp">
                                   <button class="smiley" type="submit" >
                                       <i class="fas fa-smile"></i>
-
                                     </button>
                                   </form>
                                </td>

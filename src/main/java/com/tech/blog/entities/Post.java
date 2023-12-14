@@ -98,4 +98,16 @@ public class Post {
         this.type=type;
     }
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "pid=" + pid +
+                ", sid=" + sid +
+                ", uid=" + uid +
+                ", title='" + title + '\'' +
+                ", filename='" + filename + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

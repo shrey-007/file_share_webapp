@@ -1,6 +1,7 @@
 package com.tech.blog.dao;
 
 import com.tech.blog.entities.Post;
+import com.tech.blog.entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -120,6 +121,39 @@ public class PostDao {
                 String type=rs.getString("type");
                 //ek (row)post ki details nikali, ab use post ke object mai rakh do
                 Post post=new Post(pid,sid,uid,title,filename,description,type);
+                //ab us object ko list mai daal do
+                list.add(post);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Post> getPublicPosts(int uid,String oid){
+
+        List<Post> list=new ArrayList<>();
+        try{
+            String query="select post.* from post inner join user on post.uid=user.id where post.type=? or user.oid=?";
+            PreparedStatement ps= con.prepareStatement(query);
+            ps.setString(1,"public");
+            ps.setString(2,oid);
+            ResultSet rs=ps.executeQuery();
+
+            //rs mai saari rows aa gyi
+
+            while(rs.next()){
+                int pid=rs.getInt("pid");
+                int uid1=rs.getInt("uid");
+                int sid=rs.getInt("sid");
+                String title=rs.getString("title");
+                String filename=rs.getString("filename");
+                String description=rs.getString("description");
+                String type=rs.getString("type");
+                //ek (row)post ki details nikali, ab use post ke object mai rakh do
+                Post post=new Post(pid,sid,uid1,title,filename,description,type);
+//                System.out.println(post);
                 //ab us object ko list mai daal do
                 list.add(post);
             }

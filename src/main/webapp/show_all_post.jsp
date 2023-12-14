@@ -10,22 +10,25 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 <html>
 
     <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <style>
         table {
                             width: 100%;
-                            border-collapse: collapse;
+                            border:2px solid black;
                             margin-bottom: 20px;
+                            /*it is very imp otherwise sab row, column ke border alag dikhege toh collapse krdo*/
+                            border-collapse:collapse;
                         }
 
                         th, td {
                             padding: 10px;
                             text-align: left;
-                            border: 1px solid #ddd;
+                            border: 1px solid black;
                         }
 
                         th {
-                            background-color: #333;
-                            color: #fff;
+                            background-color: rgb(6, 6, 78);
+                            color: white;
                         }
                .posts{
                         display: flex;
@@ -35,6 +38,14 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                                  background-color: aqua;
                                  border: 1px solid black;
                      }
+                      i{
+                                      color:yellow;}
+                                      .smiley i{
+                                      font-size: 2em;
+                                      cursor:pointer;
+                                      }
+                                      .smiley{
+                                      background-color: rgb(6, 6, 78);}
 
         </style>
     </head>
@@ -47,7 +58,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
         <%
         out.println("<table><tr><th>Title</th><th>Name</th><th>Description</th><th>File</th><th>Likes</th></tr>");
          PostDao postdao=new PostDao(ConnectionProvider.getConnection());
-         List<Post> list=postdao.getAllPosts();
+         List<Post> list=postdao.getPublicPosts(user.getId(),user.getOrganisation());
          for(Post p:list){
          String filename="files/"+p.getFilename();
          int id=p.getUid();
@@ -60,12 +71,15 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                         <td><%=p.getDescription()%></td>
                         <td><a href="<%=filename%>">Show file</a></td>
                         <td><%= likeDao.countLikeOnPost(p.getPid()) %>
-                                                          <form action="like" method="post">
-                                                          <input type="hidden" name="uid" value="<%=user.getId()%>">
-                                                          <input type="hidden" name="pid" value="<%=p.getPid()%>">
-                                                          <input type="hidden" name="kahaSeAaya" value="show_all_post.jsp">
-                                                          <input type="submit" value="Submit">
-                                                          </form>
+                                                         <form action="like" method="post">
+                                                         <input type="hidden" name="uid" value="<%=user.getId()%>">
+                                                         <input type="hidden" name="pid" value="<%=p.getPid()%>">
+                                                         <input type="hidden" name="filename" value="<%= p.getTitle() %>">
+                                                         <input type="hidden" name="kahaSeAaya" value="profile.jsp">
+                                                         <button class="smiley" type="submit" >
+                                                             <i class="fas fa-smile"></i>
+                                                           </button>
+                                                         </form>
                         </td>
           </tr>
 
@@ -73,8 +87,11 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                         }
                         out.println("</table>");
        %>
+<br>
+<br>
+<br><br><br><br><br>
 
-
+<%@include file="footer.jsp"%>
     </body>
 </html>
 
