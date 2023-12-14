@@ -121,7 +121,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
                   <div class="File">
                       <div class="showFile"><a href="<%=filename%>">Show File</a></div>
-                      <div class="editFile">Edit</div>
+                      <div class="editFile"><a href="editPost.jsp">Edit</a></div>
                   </div>
                   <br>
 
