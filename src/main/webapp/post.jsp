@@ -31,7 +31,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                 }
 
                 .signup-container {
-                    background-color: rgb(3, 3, 24);;
+                    background-color: rgb(3, 3, 24);
                     padding: 20px;
                     border-radius: 10px;
                     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

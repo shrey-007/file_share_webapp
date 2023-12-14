@@ -16,6 +16,7 @@ public class LikeServlet extends HttpServlet {
         int pid=Integer.parseInt(req.getParameter("pid"));
         int uid=Integer.parseInt(req.getParameter("uid"));
         String title=req.getParameter("filename");
+        String url=req.getParameter("url");
 
         //create likedao object
         LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
@@ -28,9 +29,11 @@ public class LikeServlet extends HttpServlet {
         else{
             likeDao.insertLike(uid,pid);
         }
+        System.out.println("hi");
 
         String kahaSeAaya=req.getParameter("kahaSeAaya");
         if(kahaSeAaya.equals("profile.jsp")){resp.sendRedirect("profile.jsp");}
+        else if(kahaSeAaya.equals("displayIndividualPost.jsp")){resp.sendRedirect(url);}
         else{resp.sendRedirect("show_all_post.jsp");}
 
 

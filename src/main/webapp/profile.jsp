@@ -179,13 +179,14 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
 
        <%
-           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th><th>Type</th><th>Likes</th></tr>");
+           out.println("<table><tr><th>Title</th><th>Description</th><th>Files</th><th>Type</th><th>Likes</th><th>Show Post</th></tr>");
 
            PostDao postdao = new PostDao(ConnectionProvider.getConnection());
            List<Post> list = postdao.getAllPostsByUser(uid);
 
            for (Post p : list) {
                String filename = "files/" + p.getFilename();
+
        %>
                <tr>
                                <td><%= p.getTitle() %><%= p.getPid() %></td>
@@ -203,6 +204,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                                     </button>
                                   </form>
                                </td>
+                               <td><a href="displayIndividualPost.jsp?postId=<%=p.getPid()%>&postUserId=<%=p.getUid()%>&postSubjectId=<%=p.getSid()%>&postTitle=<%=p.getTitle()%>&postDescription=<%=p.getDescription()%>&postType=<%=p.getType()%>&postFile=<%=p.getFilename()%>">Show</a></td>
 
 
                </tr>
