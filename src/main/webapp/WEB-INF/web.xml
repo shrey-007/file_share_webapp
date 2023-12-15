@@ -130,6 +130,24 @@
   </servlet-mapping>
 
 
+  <servlet>
+    <servlet-name>
+      Issue
+    </servlet-name>
+    <servlet-class>
+      com.tech.blog.servlets.IssueServlet
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>
+      Issue
+    </servlet-name>
+    <url-pattern>
+      /issue
+    </url-pattern>
+  </servlet-mapping>
+
 
 
 

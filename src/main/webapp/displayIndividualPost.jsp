@@ -141,6 +141,19 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                      </div>
                   </div>
 
+                  <div class="issue">
+                      <form action="issue" method="post">
+                           <input type="hidden" name="uid" value="<%=user.getId()%>">
+                           <input type="hidden" name="pid" value="<%=postId%>">
+                           <input type="hidden" name="url" value="displayIndividualPost.jsp?postId=<%=postId%>&postUserId=<%=postUserId%>&postSubjectId=<%=postSubjectId%>&postTitle=<%=postTitle%>&postDescription=<%=postDescription%>&postType=<%=postType%>&postFile=<%=postFile%>">
+                           <label for="content">Enter Issue</label>
+                           <textarea name="content" id="" cols="30" rows="10"></textarea>
+                           <button  type="submit" >
+                               Submit
+                           </button>
+                      </form>
+                  </div>
+
                   <br>
 
                   <div class="AddIssue"></div>
