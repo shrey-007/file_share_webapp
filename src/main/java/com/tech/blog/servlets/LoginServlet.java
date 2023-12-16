@@ -24,7 +24,9 @@ public class LoginServlet extends HttpServlet {
 
         if(user==null){
             PrintWriter out=resp.getWriter();
-            out.println("you are not a registered user.please sign in hehe..");
+            HttpSession session=req.getSession();
+            session.setAttribute("message","notRegistered");
+            resp.sendRedirect("login.jsp");
         }
         else{
             //session banao to store current user

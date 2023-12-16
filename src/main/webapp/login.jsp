@@ -52,6 +52,16 @@
         .form-group button:hover {
             background-color: #f9c01fde;
         }
+        .invalid{
+          height:30px;
+          background-color: grey;
+          color:#1f0909;
+          margin-bottom:10px;
+          text-align:center;
+          border:2px hidden black;
+          border-radius:4px;
+          padding-top:3px;
+        }
 
 
 
@@ -80,6 +90,20 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
+                <%
+                    String message=(String)session.getAttribute("message");
+
+                    if(message!=null){
+                %>
+                <div class="invalid">
+                          You are not a registerd user!!
+                </div>
+                <%
+                    session.removeAttribute("message");
+                      }
+                %>
+
+
             <div class="form-group">
                 <button type="submit">Login</button>
             </div>
