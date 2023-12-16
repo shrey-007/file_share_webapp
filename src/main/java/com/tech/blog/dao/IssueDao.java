@@ -1,7 +1,12 @@
 package com.tech.blog.dao;
 
+import com.tech.blog.entities.Issue;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IssueDao {
     Connection con;
@@ -26,6 +31,31 @@ public class IssueDao {
             System.out.println(e);
         }
         return flag;
+    }
+
+    public List<Issue> getAllIssueByPostId(int pid){
+        List<Issue> list=new ArrayList<>();
+        try{
+            String query="select * from issue where pid=?";
+            PreparedStatement ps=this.con.prepareStatement(query);
+            ps.setInt(1,pid);
+
+            ResultSet rs=ps.executeQuery();
+
+            while (rs.next()){
+                int iid=rs.getInt("iid");
+                int uid=rs.getInt("uid");
+                String content=rs.getString("content");
+
+                Issue issue=new Issue(uid,pid,content);
+                list.add(issue);
+            }
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return list;
     }
 
 
