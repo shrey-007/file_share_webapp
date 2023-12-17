@@ -67,8 +67,10 @@
        <a href="index.jsp" class="navBarElements">Home</a>
        <div class="navBarElements2">
           <a href="notification.jsp" class="navBarsubElements2" id="e1"><i class="fas fa-bell"></i></i></a>
+          <a href="profile.jsp" class="prf" style="display:flex;">
           <div class="navBarsubElements2" id="e2"><i class="fas fa-user"></i></div>
           <div class="navBarsubElements2" id="e3"><%=user.getName()%></div>
+          </a>
        </div>
        <a href="logout" class="navBarElements">Logout</a>
 </div>

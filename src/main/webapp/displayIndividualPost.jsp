@@ -1,5 +1,5 @@
 <%@page errorPage="error.jsp"%>
-<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.LikeDao,com.tech.blog.dao.UserDao" %>
+<%@page import="com.tech.blog.entities.User,com.tech.blog.entities.Issue,com.tech.blog.entities.Post,com.tech.blog.dao.PostDao,java.util.List,com.tech.blog.helper.ConnectionProvider,com.tech.blog.dao.LikeDao,com.tech.blog.dao.UserDao,com.tech.blog.dao.IssueDao" %>
 
 <%
 User user=(User)session.getAttribute("currentuser");
@@ -159,7 +159,27 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                   <div class="AddIssue"></div>
                   <br>
 
-                  <div class="showIssue"></div>
+                  <div class="showIssue">
+                           <%
+                               out.println("<table><tr><th>Person</th><th>Issue</th></tr>");
+
+                               IssueDao issueDao = new IssueDao(ConnectionProvider.getConnection());
+                               List<Issue> list = issueDao.getAllIssueByPostId(postId);
+
+                               for (Issue issue : list) {
+
+
+                           %>
+                                   <tr>
+                                                   <td><%=issue.getUid()%></td>
+                                                   <td><%= issue.getContent() %></td>
+                                   </tr>
+                           <%
+                               }
+
+                               out.println("</table>");
+                           %>
+                  </div>
 
       </div>
 
