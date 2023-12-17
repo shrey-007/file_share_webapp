@@ -72,6 +72,35 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                 border-radius: 8px;
                 color: #de0000;
              }
+
+
+
+              table {
+                    width: 100%;
+                    border:2px solid black;
+                    margin-bottom: 20px;
+                    /*it is very imp otherwise sab row, column ke border alag dikhege toh collapse krdo*/
+                    border-collapse:collapse;
+                    background-color: rgb(183 140 0);
+                    color: white;
+                }
+
+                th, td {
+                    padding: 10px;
+                    text-align: left;
+                    border: 1px solid black;
+                }
+
+                th {
+                    background-color: rgb(6, 6, 78);
+                    color: white;
+                }
+                button{
+                  background-color: rgb(183 140 0);
+                  color: white;
+                  border:2px solid black;
+                  height:25px;
+                }
         </style>
     </head>
     <body>
@@ -108,21 +137,48 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                   <hr>
 
                   <div class="TitleAndType">
-                      <div class="PostTitle"><%=postTitle%></div>
+                      <div class="PostTitle"><%=postTitle%>
+                      <button class="fa fa-edit" onclick="changeTitle()"></button>
+                      </div>
                       <div class="type" id="<%= postType %>"><%= postType %></div>
                   </div>
 
+                  <form action="postEdit" method="post" style="display:none;" id="f1">
+                    <label for="title">Enter Title</label>
+                    <input type="text" name="title"></input>
+                    <input type="hidden" name="toChange" value="title"></input>
+                    <button type="submit">Submit</button>
+                  </form>
+
                   <hr>
-                  <div class="PostDescription"><%=postDescription%></div>
+                  <div class="PostDescription"><%=postDescription%>
+                  <button class="fa fa-edit" onclick="changeDescription()"></button>
+                  </div>
+
+                  <form action="postEdit" method="post" style="display: none;" id="f2">
+                    <label for="description">Enter Description</label>
+                    <input type="text" name="description"></input>
+                    <input type="hidden" name="toChange" value="description"></input>
+                    <button type="submit">Submit</button>
+                  </form>
+
                   <hr>
 
                   <div class="Subject">Subject</div>
                   <br>
 
-                  <div class="File">
-                      <div class="showFile"><a href="<%=filename%>">Show File</a></div>
-                      <div class="editFile"><a href="editPost.jsp">Edit</a></div>
+
+                  <div class="showFile" >
+                  <a href="<%=filename%>" style="color:yellow;">Show File</a>
+                  <button class="fa fa-edit" onclick="changeFile()"></button>
                   </div>
+
+                  <form action="postEdit" method="post" style="display: none;" id="f3" enctype="multipart/form-data">
+                    <input type="file" id="ufile" name="ufile" required>
+                    <input type="hidden" name="toChange" value="file"></input>
+                    <button type="submit">Submit</button>
+                  </form>
+
                   <br>
 
                   <div class="LikesAndIcon">
@@ -147,16 +203,16 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                            <input type="hidden" name="pid" value="<%=postId%>">
                            <input type="hidden" name="url" value="displayIndividualPost.jsp?postId=<%=postId%>&postUserId=<%=postUserId%>&postSubjectId=<%=postSubjectId%>&postTitle=<%=postTitle%>&postDescription=<%=postDescription%>&postType=<%=postType%>&postFile=<%=postFile%>">
                            <label for="content">Enter Issue</label>
-                           <textarea name="content" id="" cols="30" rows="10"></textarea>
+                           <input name="content"></input>
                            <button  type="submit" >
-                               Submit
+                               Issue
                            </button>
                       </form>
                   </div>
 
                   <br>
 
-                  <div class="AddIssue"></div>
+
                   <br>
 
                   <div class="showIssue">
@@ -165,13 +221,14 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
                                IssueDao issueDao = new IssueDao(ConnectionProvider.getConnection());
                                List<Issue> list = issueDao.getAllIssueByPostId(postId);
+                               UserDao userDao = new UserDao(ConnectionProvider.getConnection());
 
                                for (Issue issue : list) {
 
 
                            %>
                                    <tr>
-                                                   <td><%=issue.getUid()%></td>
+                                                   <td><%=userDao.getUserNameById(issue.getUid())%></td>
                                                    <td><%= issue.getContent() %></td>
                                    </tr>
                            <%
@@ -194,5 +251,42 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
     <br>
 <%@include file="footer.jsp"%>
 
+
+
+
+    <script>
+      function changeTitle(){
+              var form = document.getElementById("f1");
+
+
+              if(form.style.display=="none"){
+                form.style.display="block";
+               }
+               else{
+                form.style.display="none";
+               }
+             }
+
+        function changeDescription(){
+                var form = document.getElementById("f2");
+
+                if(form.style.display=="none"){
+                  form.style.display="block";
+                 }
+                 else{
+                  form.style.display="none";
+                 }
+               }
+          function changeFile(){
+                  var form = document.getElementById("f3");
+
+                  if(form.style.display=="none"){
+                    form.style.display="block";
+                   }
+                   else{
+                    form.style.display="none";
+                   }
+                 }
+    </script>
     </body>
 </html>
