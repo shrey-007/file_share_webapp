@@ -115,4 +115,37 @@ public class UserDao {
         }
         return username;
     }
+
+
+    public boolean updateName(User user){
+        boolean flag=false;
+        try{
+            String query="update user set name=? where id=?";
+            PreparedStatement ps= con.prepareStatement(query);
+            ps.setString(1, user.getName());
+            ps.setInt(2,user.getId());
+            ps.executeUpdate();
+            flag=true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public boolean updateAbout(User user){
+        boolean flag=false;
+        try{
+            String query="update user set about=? where id=?";
+            PreparedStatement ps= con.prepareStatement(query);
+            ps.setString(1, user.getAbout());
+            ps.setInt(2,user.getId());
+            ps.executeUpdate();
+            flag=true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

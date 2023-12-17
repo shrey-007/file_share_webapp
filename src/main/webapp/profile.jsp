@@ -84,7 +84,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                               #photoButton{
                                          display: flex;
                                          background-color: rgb(6, 6, 78);
-                                         height: 50;
+
                                      }
                  .parent2{
                   display:flex;
@@ -139,22 +139,52 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                <img src="<%=imagename%>" width="200" height="200">
             </div>
             <div class="child2">
-              <h2>Username :<%=user.getName()%></h2>
+              <div>
+              <button class="fa fa-edit" onclick="changeName()" id="c11"></button>
+              Username :<%=user.getName()%>
+              <form action="update" method="post" id="c12" style="display:none;">
+              <label for="name">Enter Name</label>
+              <input type="text" name="name">
+              <input type="hidden" name="toChange" value="name">
+              <button type="submit">Submit</button>
+              </form>
+              </div>
               <br>
+              <div>
               Gender :<%=user.getGender()%>
+              </div>
               <br>
+              <div>
               Email :<%=user.getEmail()%>
+              </div>
               <br>
+              <div>
+              <button class="fa fa-edit" onclick="changeAbout()" id="c21"></button>
               About:<%=user.getAbout()%>
+              <form action="update" method="post" id="c22" style="display:none;">
+              <label for="about">Enter About</label>
+              <input type="text" name="about">
+              <input type="hidden" name="toChange" value="about">
+              <button type="submit">Submit</button>
+              </form>
+              </div>
             </div>
         </div>
 
 
-       <div class="button" id="photoButton">
-                   <form action="update.jsp" method="post">
-                       <button >Change Profile Photo</button>
+       <div  id="photoButton">
 
-                   </form>
+
+             <form id="c2" action="update" method="post" enctype="multipart/form-data" style="display: none;color:white;width:250px">
+                   <input type="hidden" name="toChange" value="pic">
+                   <input type="file" name="profilepic"/>
+                      <div class="button" style="margin-right:1000px;">
+                                   <button type="submit">Upload image</button>
+                      </div>
+             </form>
+             <div class="button">
+             <button id="c1" onclick="changePhoto()">Change Profile Photo</button>
+             </div>
        </div>
 
        <div class="parent2">
@@ -216,6 +246,55 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
 
 <%@include file="footer.jsp"%>
+
+
+<script>
+ function changePhoto(){
+                var form = document.getElementById("c2");
+                var btn=document.getElementById("c1");
+
+                if(form.style.display=="none"){
+                  form.style.display="block";
+                  btn.innerHTML="Back";
+
+                 }
+                 else{
+                  form.style.display="none";
+                  btn.innerHTML="Change Profile Photo";
+
+                 }
+             }
+
+  function changeAbout(){
+          var form = document.getElementById("c22");
+          var btn=document.getElementById("c21");
+
+          if(form.style.display=="none"){
+            form.style.display="block";
+
+
+           }
+           else{
+            form.style.display="none";
+
+
+           }
+         }
+
+  function changeName(){
+          var form = document.getElementById("c12");
+          var btn=document.getElementById("c11");
+
+          if(form.style.display=="none"){
+            form.style.display="block";
+
+           }
+           else{
+            form.style.display="none";
+
+           }
+         }
+</script>
 </body>
 </html>
 
