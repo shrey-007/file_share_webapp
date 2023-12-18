@@ -201,6 +201,24 @@ public class PostDao {
         return flag;
     }
 
+    public boolean updateFile(int pid,String fileName){
+        boolean flag=false;
+
+        try{
+            String query="update post set filename=? where pid=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1,fileName);
+            ps.setInt(2,pid);
+            ps.executeUpdate();
+            flag=true;
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        return flag;
+    }
+
     public Post getPostById(int pid){
         Post post=null;
         try{

@@ -219,7 +219,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 
        %>
                <tr>
-                               <td><%= p.getTitle() %><%= p.getPid() %></td>
+                               <td><%= p.getTitle() %></td>
                                <td><%= p.getDescription() %></td>
                                <td><a href="<%= filename %>">Show file</a></td>
                                <td><div class="type" id="<%= p.getType() %>"><%= p.getType() %></div></td>
