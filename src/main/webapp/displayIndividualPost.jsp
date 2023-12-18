@@ -147,6 +147,8 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                     <label for="title">Enter Title</label>
                     <input type="text" name="title"></input>
                     <input type="hidden" name="toChange" value="title"></input>
+                    <input type="hidden" name="pid" value="<%=postId%>"></input>
+                    <input type="hidden" name="url" value="displayIndividualPost.jsp?postId=<%=postId%>&postUserId=<%=postUserId%>&postSubjectId=<%=postSubjectId%>&postTitle=<%=postTitle%>&postDescription=<%=postDescription%>&postType=<%=postType%>&postFile=<%=postFile%>">
                     <button type="submit">Submit</button>
                   </form>
 
@@ -159,6 +161,8 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                     <label for="description">Enter Description</label>
                     <input type="text" name="description"></input>
                     <input type="hidden" name="toChange" value="description"></input>
+                    <input type="hidden" name="pid" value="<%=postId%>"></input>
+                    <input type="hidden" name="url" value="displayIndividualPost.jsp?postId=<%=postId%>&postUserId=<%=postUserId%>&postSubjectId=<%=postSubjectId%>&postTitle=<%=postTitle%>&postDescription=<%=postDescription%>&postType=<%=postType%>&postFile=<%=postFile%>">
                     <button type="submit">Submit</button>
                   </form>
 
@@ -176,6 +180,7 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
                   <form action="postEdit" method="post" style="display: none;" id="f3" enctype="multipart/form-data">
                     <input type="file" id="ufile" name="ufile" required>
                     <input type="hidden" name="toChange" value="file"></input>
+                    <input type="hidden" name="url" value="displayIndividualPost.jsp?postId=<%=postId%>&postUserId=<%=postUserId%>&postSubjectId=<%=postSubjectId%>&postTitle=<%=postTitle%>&postDescription=<%=postDescription%>&postType=<%=postType%>&postFile=<%=postFile%>">
                     <button type="submit">Submit</button>
                   </form>
 

@@ -149,6 +149,25 @@
   </servlet-mapping>
 
 
+  <servlet>
+    <servlet-name>
+      postEdit
+    </servlet-name>
+    <servlet-class>
+      com.tech.blog.servlets.EditPost
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>
+      postEdit
+    </servlet-name>
+    <url-pattern>
+      /postEdit
+    </url-pattern>
+  </servlet-mapping>
+
+
 
 
 

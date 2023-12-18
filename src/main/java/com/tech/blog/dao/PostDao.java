@@ -165,6 +165,43 @@ public class PostDao {
     }
 
 
+   public boolean updateTitle(int pid,String title){
+        boolean flag=false;
+
+        try{
+            String query="update post set title=? where pid=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1,title);
+            ps.setInt(2,pid);
+            ps.executeUpdate();
+            flag=true;
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        return flag;
+   }
+
+    public boolean updateDescription(int pid,String description){
+        boolean flag=false;
+
+        try{
+            String query="update post set description=? where pid=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1,description);
+            ps.setInt(2,pid);
+            ps.executeUpdate();
+            flag=true;
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        return flag;
+    }
+
+
 
 
 
