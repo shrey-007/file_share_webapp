@@ -21,6 +21,24 @@
         .item p{
             padding-top: 70;
         }
+                .button {
+                        text-align: center;
+                    }
+
+                    .button a {
+                        padding: 10px 20px;
+                        margin: 5px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        background-color: #e39c0ede;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                    }
+
+                    .button a:hover {
+                        background-color: #f9c01fde;
+                    }
     </style>
     <body>
         <div class="container">
@@ -39,8 +57,12 @@
 
             <div class="item">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore placeat cupiditate veniam, eaque eligendi numquam culpa ex quam? Eligendi doloremque soluta consectetur perspiciatis placeat hic earum expedita, accusantium aliquid sed distinctio corrupti molestias.
+                  Register your Organisation to share files among your organisation privately.
                 </p>
+                <div class="button">
+                <a href="organisation.jsp" style="color:black;" >Register</a>
+                </div>
+
             </div>
 
             <div class="item">
