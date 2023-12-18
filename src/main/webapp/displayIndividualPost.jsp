@@ -225,7 +225,7 @@ PostDao postDao=new PostDao(ConnectionProvider.getConnection());
 
                   <div class="showIssue">
                            <%
-                               out.println("<table><tr><th>Person</th><th>Issue</th></tr>");
+                               out.println("<table><tr><th>Person</th><th>Issue</th><th>Date</th></tr>");
 
                                IssueDao issueDao = new IssueDao(ConnectionProvider.getConnection());
                                List<Issue> list = issueDao.getAllIssueByPostId(postId);
@@ -238,6 +238,7 @@ PostDao postDao=new PostDao(ConnectionProvider.getConnection());
                                    <tr>
                                                    <td><%=userDao.getUserNameById(issue.getUid())%></td>
                                                    <td><%= issue.getContent() %></td>
+                                                   <td><%=issue.getDate()%></td>
                                    </tr>
                            <%
                                }

@@ -1,10 +1,21 @@
 package com.tech.blog.entities;
 
+import java.sql.Date;
+
 public class Issue {
     private int iid;
     private int uid;
     private int pid;
     private String content;
+    Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public int getIid() {
         return iid;
@@ -42,6 +53,13 @@ public class Issue {
         this.uid = uid;
         this.pid = pid;
         this.content = content;
+    }
+
+    public Issue( int uid, int pid, String content, Date date) {
+        this.uid = uid;
+        this.pid = pid;
+        this.content = content;
+        this.date = date;
     }
 
     public Issue(){

@@ -3,6 +3,7 @@ package com.tech.blog.dao;
 import com.tech.blog.entities.Issue;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -46,8 +47,9 @@ public class IssueDao {
                 int iid=rs.getInt("iid");
                 int uid=rs.getInt("uid");
                 String content=rs.getString("content");
-
-                Issue issue=new Issue(uid,pid,content);
+                Date date=rs.getDate("idate");
+                System.out.println(date);
+                Issue issue=new Issue(uid,pid,content,date);
                 list.add(issue);
             }
 
