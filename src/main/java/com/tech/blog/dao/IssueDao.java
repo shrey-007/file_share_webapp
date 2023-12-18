@@ -1,6 +1,8 @@
 package com.tech.blog.dao;
 
 import com.tech.blog.entities.Issue;
+import com.tech.blog.entities.Post;
+import com.tech.blog.helper.ConnectionProvider;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -58,6 +60,33 @@ public class IssueDao {
             System.out.println(e);
         }
         return list;
+    }
+
+//    this will be used in notification page it gives all issues notifications for a particular user
+    public List<Issue> getAllIssuesForUser(int uid){
+        List<Issue> list=new ArrayList<>();
+        try{
+            String query="select issue.* from post inner join issue on post.pid=issue.pid where post.uid=?";
+            PreparedStatement ps= con.prepareStatement(query);
+            ps.setInt(1,uid);
+            ResultSet rs=ps.executeQuery();
+
+            while (rs.next()){
+                String content=rs.getString("content");
+                int iid=rs.getInt("iid");
+                int pid=rs.getInt("pid");
+                int uid2= rs.getInt("uid");
+
+                Issue issue=new Issue(iid,uid2,pid,content);
+                list.add(issue);
+            }
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return list;
+
     }
 
 

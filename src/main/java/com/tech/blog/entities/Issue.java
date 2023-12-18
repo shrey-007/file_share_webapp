@@ -55,6 +55,13 @@ public class Issue {
         this.content = content;
     }
 
+    public Issue(int iid,int uid, int pid, String content) {
+        this.uid = uid;
+        this.pid = pid;
+        this.content = content;
+        this.iid=iid;
+    }
+
     public Issue( int uid, int pid, String content, Date date) {
         this.uid = uid;
         this.pid = pid;
