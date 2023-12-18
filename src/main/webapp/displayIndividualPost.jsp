@@ -8,6 +8,7 @@ response.sendRedirect("login.jsp");}
 String imagename="images/"+user.getProfile();
 int uid=user.getId();
 LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
+PostDao postDao=new PostDao(ConnectionProvider.getConnection());
 %>
 
 
@@ -112,10 +113,11 @@ LikeDao likeDao=new LikeDao(ConnectionProvider.getConnection());
 <br>
 <%
  int postId=Integer.parseInt(request.getParameter("postId"));
+ Post post=postDao.getPostById(postId);
  int postUserId=Integer.parseInt(request.getParameter("postUserId"));
  int postSubjectId=Integer.parseInt(request.getParameter("postSubjectId"));
- String postTitle=request.getParameter("postTitle");
- String postDescription=request.getParameter("postDescription");
+ String postTitle=post.getTitle();
+ String postDescription=post.getDescription();
  String postType=request.getParameter("postType");
  String postFile=request.getParameter("postFile");
 

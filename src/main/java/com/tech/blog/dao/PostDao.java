@@ -201,6 +201,31 @@ public class PostDao {
         return flag;
     }
 
+    public Post getPostById(int pid){
+        Post post=null;
+        try{
+            String query="select * from post where pid=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setInt(1,pid);
+            ResultSet resultSet=ps.executeQuery();
+
+            while (resultSet.next()){
+//                resultSet.getInt("pid");
+                int uid=resultSet.getInt("uid");
+                int sid=resultSet.getInt("sid");
+                String title=resultSet.getString("title");
+                String filename=resultSet.getString("filename");
+                String description=resultSet.getString("description");
+                String type=resultSet.getString("type");
+                post=new Post(pid,sid,uid,title,filename,description,type);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return post;
+    }
+
 
 
 
