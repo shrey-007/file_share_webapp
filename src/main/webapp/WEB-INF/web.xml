@@ -168,6 +168,24 @@
   </servlet-mapping>
 
 
+  <servlet>
+    <servlet-name>
+      Organisation
+    </servlet-name>
+    <servlet-class>
+      com.tech.blog.servlets.OrganisationServlet
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>
+      Organisation
+    </servlet-name>
+    <url-pattern>
+      /organisation
+    </url-pattern>
+  </servlet-mapping>
+
 
 
 
